@@ -2,6 +2,7 @@
 '''
 
 from graphics import *
+from threading import Semaphore, Thread
 
 class message():
 	# The message itself
@@ -9,6 +10,7 @@ class message():
 	# The coordinates of the message. X should be constant, y should be in rows
 	x = 1000
 	y = 20
+	live = True
 	def __init__(self, text, x, y):
 		self.text = text
 		self.x = x
@@ -24,6 +26,36 @@ class message():
 	
 	def scroll(self):
 		self.message.move(-2, 0)
+		self.x -= 1
+		if self.x < -500:
+			self.message.undraw()
+			self.live = False
+
+class chat():
+	messages = []
+	
+	def __init__(self):
+		print "Chat logging starting"
+	
+	def add(self, message):
+		self.messages.append(message)
+	
+	def run(self):
+		for message in self.messages:
+			message.scroll()
+			if not message.live:
+				print "Message gone"
+				self.messages.remove(message)
+	
+	def empty(self):
+		return len(self.messages) == 0
+
+def aaaaa(sema):
+	print "aaaa"
+	time.sleep(3)
+	print "bbbb"
+	sema.release()
+	return
 
 def main():
 	win = GraphWin('Face', 1000, 500) # give title and dimensions
@@ -32,21 +64,33 @@ def main():
 	#Background
 	win.setBackground("Black")
 	
+	messages = chat()
+	
 	test = message("This is a blowup", 1200, 50)
 	test.draw(win)
 	
 	text = message("This is a test", 1000, 20)
 	text.draw(win)
 	
-	
+	messages.add(test)
+	messages.add(text)
+	sema = Semaphore(0)
+	t = Thread(target=aaaaa, args=(sema,))
+	t.start()
 	
 	while True:
 		#win.getMouse()
-		text.scroll()
-		test.scroll()
-		time.sleep(.005)
+		if not messages.empty():
+			messages.run()
+			time.sleep(.004)
+		if messages.empty():
+			#sema.acquire()
+			asdf = message("asdfasdfa", 1000, 70)
+			asdf.draw(win)
+			messages.add(asdf)
 		if win.isClosed():
-			return
+			t.join()
+			exit()
 		
 	#win.close()
 	#win.promptClose(10, 10)
