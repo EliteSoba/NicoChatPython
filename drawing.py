@@ -66,10 +66,10 @@ def main():
 	
 	messages = chat()
 	
-	test = message("This is a blowup", 1200, 50)
+	test = message("This is another comment", 1200, 50)
 	test.draw(win)
 	
-	text = message("This is a test", 1000, 20)
+	text = message("This is a comment", 1000, 20)
 	text.draw(win)
 	
 	messages.add(test)
