@@ -37,9 +37,9 @@ class TwitchMonitor(irc.IRCClient):
 	def signedOn(self):
 		"""Called when client has succesfully signed on to server."""
 		self.join(self.factory.channel)
-		t = Thread(target=scrollComments, args=(self.comments,))
-		t.daemon = True
-		t.start()
+		scrollCommentsThread = Thread(target=scrollComments, args=(self.comments,))
+		scrollCommentsThread.daemon = True
+		scrollCommentsThread.start()
 
 	def privmsg(self, user, channel, msg):
 		"""This will get called when the client receives a message."""
