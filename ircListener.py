@@ -44,13 +44,14 @@ class TwitchMonitor(irc.IRCClient):
 	def privmsg(self, user, channel, msg):
 		"""This will get called when the client receives a message."""
 		user = user.split('!', 1)[0]
-		print("<%s> %s" % (user, msg))
+		#print("<%s> %s" % (user, msg))
 		self.comments.addComment(msg)
 
 	def action(self, user, channel, msg):
 		"""This will get called when the client sees someone do an action."""
 		user = user.split('!', 1)[0]
-		print("* %s %s" % (user, msg))
+		#print("* %s %s" % (user, msg))
+		self.comments.addComment(msg)
 
 
 
