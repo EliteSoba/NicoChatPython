@@ -11,4 +11,4 @@ These files may or may not be included later in this repository or something to 
 The idea behind this is to chromakey out the background and overlay the text over a stream.
 
 It looks like this for now. Who knows if it will keep looking like this.
-![](http://i.imgur.com/HcG6WPb.png)
+![](http://i.imgur.com/m31O1Kp.png)
