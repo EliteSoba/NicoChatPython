@@ -25,7 +25,7 @@ class TwitchMonitor(irc.IRCClient):
 	
 	def connectionMade(self):
 		irc.IRCClient.connectionMade(self)
-		win = GraphWin('Chat', 1920, 500) # give title and dimensions
+		win = GraphWin('Chat', 1184, 500) # give title and dimensions
 		#Background
 		win.setBackground("Black")
 		self.comments = chat(win)
@@ -46,7 +46,7 @@ class TwitchMonitor(irc.IRCClient):
 		"""This will get called when the client receives a message."""
 		user = user.split('!', 1)[0]
 		print("<%s> %s" % (user, msg))
-		comm = comment(msg, 2500, randint(1, 8) * 50)
+		comm = comment(msg, 1500, randint(1, 8) * 50)
 		self.comments.add(comm)
 
 	def action(self, user, channel, msg):

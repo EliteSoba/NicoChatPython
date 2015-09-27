@@ -1,4 +1,5 @@
 ﻿from graphics import *
+from Tkinter import TclError
 
 class comment():
 	# The comment itself
@@ -21,8 +22,12 @@ class comment():
 		self.comment.draw(win)
 	
 	def scroll(self):
-		self.comment.move(-2, 0)
+		try:
+			self.comment.move(-2, 0)
+		except TclError:
+			print "I have no idea"
+			self.live = False
 		self.x -= 1
 		if self.x < -500:
-			self.comment.undraw()
+			#self.comment.undraw()
 			self.live = False

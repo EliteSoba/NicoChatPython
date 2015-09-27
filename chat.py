@@ -16,6 +16,7 @@ class chat():
 			comment.scroll()
 			if not comment.live:
 				#print "Comment gone"
+				comment.comment.undraw()
 				self.comments.remove(comment)
 	
 	def empty(self):
