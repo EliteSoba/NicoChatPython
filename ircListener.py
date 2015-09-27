@@ -5,6 +5,18 @@ from twisted.python import log
 
 # system imports
 import time, sys
+from graphics import *
+from chat import chat
+from comment import comment
+from threading import Thread
+from random import randint
+
+def scrollComments(comments):
+	while True:
+		comments.run()
+		time.sleep(.004)
+	exit()
+	return
 
 class TwitchMonitor(irc.IRCClient):
 	"""Client to monitor Twitch chat"""
@@ -13,21 +25,29 @@ class TwitchMonitor(irc.IRCClient):
 	
 	def connectionMade(self):
 		irc.IRCClient.connectionMade(self)
+		win = GraphWin('Chat', 1920, 500) # give title and dimensions
+		#Background
+		win.setBackground("Black")
+		self.comments = chat(win)
 
 	def connectionLost(self, reason):
 		irc.IRCClient.connectionLost(self, reason)
-
 
 	# callbacks for events
 
 	def signedOn(self):
 		"""Called when client has succesfully signed on to server."""
 		self.join(self.factory.channel)
+		t = Thread(target=scrollComments, args=(self.comments,))
+		t.daemon = True
+		t.start()
 
 	def privmsg(self, user, channel, msg):
 		"""This will get called when the client receives a message."""
 		user = user.split('!', 1)[0]
 		print("<%s> %s" % (user, msg))
+		comm = comment(msg, 2500, randint(1, 8) * 50)
+		self.comments.add(comm)
 
 	def action(self, user, channel, msg):
 		"""This will get called when the client sees someone do an action."""
@@ -58,7 +78,7 @@ class MonitorFactory(protocol.ClientFactory):
 		print "connection failed:", reason
 		reactor.stop()
 
-
+	
 if __name__ == '__main__':
 	
 	# create factory protocol and application
