@@ -50,13 +50,12 @@ class chat():
 	def empty(self):
 		return len(self.messages) == 0
 
-def aaaaa(sema):
-	print "aaaa"
-	time.sleep(3)
-	print "bbbb"
-	sema.release()
+def bbbbb(messages):
+	while True:
+		messages.run()
+		time.sleep(.004)
+	exit()
 	return
-
 def main():
 	win = GraphWin('Face', 1000, 500) # give title and dimensions
 	
@@ -75,12 +74,19 @@ def main():
 	messages.add(test)
 	messages.add(text)
 	sema = Semaphore(0)
-	t = Thread(target=aaaaa, args=(sema,))
+	t = Thread(target=bbbbb, args=(messages,))
+	t.daemon = True
 	t.start()
 	
 	while True:
-		#win.getMouse()
-		if not messages.empty():
+		try:
+			win.getMouse()
+			asdf = message("asdfasdfa", 1000, 70)
+			asdf.draw(win)
+			messages.add(asdf)
+		except:
+			return
+		"""if not messages.empty():
 			messages.run()
 			time.sleep(.004)
 		if messages.empty():
@@ -89,9 +95,8 @@ def main():
 			asdf.draw(win)
 			messages.add(asdf)
 		if win.isClosed():
-			t.join()
-			exit()
-		
+			exit()"""
+	
 	#win.close()
 	#win.promptClose(10, 10)
 
