@@ -9,7 +9,6 @@ from graphics import *
 from chat import chat
 from comment import comment
 from threading import Thread
-from random import randint
 
 def scrollComments(comments):
 	while True:
@@ -46,8 +45,7 @@ class TwitchMonitor(irc.IRCClient):
 		"""This will get called when the client receives a message."""
 		user = user.split('!', 1)[0]
 		print("<%s> %s" % (user, msg))
-		comm = comment(msg, 1500, randint(1, 8) * 50)
-		self.comments.add(comm)
+		self.comments.addComment(msg)
 
 	def action(self, user, channel, msg):
 		"""This will get called when the client sees someone do an action."""

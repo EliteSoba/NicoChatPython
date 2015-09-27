@@ -20,6 +20,9 @@ class comment():
 	
 	def draw(self, win):
 		self.comment.draw(win)
+		
+	def undraw(self):
+		self.comment.undraw()
 	
 	def scroll(self):
 		try:
@@ -28,6 +31,6 @@ class comment():
 			print "I have no idea"
 			self.live = False
 		self.x -= 1
-		if self.x < -500:
+		if self.x < -50:
 			#self.comment.undraw()
 			self.live = False

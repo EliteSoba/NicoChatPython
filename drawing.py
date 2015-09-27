@@ -22,10 +22,10 @@ def main():
 	comments = chat(win)
 	
 	test = comment("This is another comment", 1200, 50)
+	words = "This is a commentaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+	text = comment(words, 1000+8*len(words), 20)
 	
-	text = comment("This is a comment", 1000, 20)
-	
-	comments.add(test)
+	#comments.add(test)
 	comments.add(text)
 	sema = Semaphore(0)
 	t = Thread(target=bbbbb, args=(comments,))
@@ -34,10 +34,11 @@ def main():
 	
 	while True:
 		try:
-			words = raw_input()
-			comm = comment(words, 1000, 20)
-			comments.add(comm)
-			#win.getMouse()
+			#words = raw_input()
+			#comm = comment(words, 1000, 20)
+			#comments.add(comm)
+			win.getMouse()
+			#comments.run()
 			if win.isClosed():
 				exit()
 		except:
