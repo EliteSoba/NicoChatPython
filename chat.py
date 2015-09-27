@@ -2,13 +2,18 @@
 from random import randint
 class chat():
 	comments = []
+	i = 0
 	
 	def __init__(self, font):
 		self.font = font
 		print "Chat logging starting"
 	
 	def addComment(self, msg):
-		comm = comment(msg, 1184, randint(1, 8) * 50, self.font)
+		#row = randint(0, 20) * 25
+		comm = comment(msg, 1184, self.i*25, self.font)
+		self.i += 1
+		if self.i > 20:
+			self.i = 0
 		#print "Added comment: " + msg
 		self.comments.append(comm)
 	
