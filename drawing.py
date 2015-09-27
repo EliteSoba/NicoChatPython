@@ -18,7 +18,7 @@ class message():
 		self.message = Text(Point(self.x, self.y), text)
 		self.message.setFace('helvetica')
 		self.message.setStyle('bold')
-		self.message.setFill('White')
+		self.message.setTextColor('White')
 		self.message.setSize(20)
 	
 	def draw(self, win):
