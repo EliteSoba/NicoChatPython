@@ -24,10 +24,10 @@ class TwitchMonitor(irc.IRCClient):
 	
 	def connectionMade(self):
 		irc.IRCClient.connectionMade(self)
-		win = GraphWin('Chat', 1184, 500) # give title and dimensions
+		self.win = GraphWin('Chat', 1184, 500) # give title and dimensions
 		#Background
-		win.setBackground("Black")
-		self.comments = chat(win)
+		self.win.setBackground("Black")
+		self.comments = chat(self.win)
 
 	def connectionLost(self, reason):
 		irc.IRCClient.connectionLost(self, reason)
@@ -37,9 +37,9 @@ class TwitchMonitor(irc.IRCClient):
 	def signedOn(self):
 		"""Called when client has succesfully signed on to server."""
 		self.join(self.factory.channel)
-		scrollCommentsThread = Thread(target=scrollComments, args=(self.comments,))
-		scrollCommentsThread.daemon = True
-		scrollCommentsThread.start()
+		self.scrollCommentsThread = Thread(target=scrollComments, args=(self.comments,))
+		self.scrollCommentsThread.daemon = True
+		self.scrollCommentsThread.start()
 
 	def privmsg(self, user, channel, msg):
 		"""This will get called when the client receives a message."""
