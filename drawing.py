@@ -34,9 +34,12 @@ def main():
 	
 	while True:
 		try:
-			win.getMouse()
-			asdf = comment("asdfasdfa", 1000, 70)
-			comments.add(asdf)
+			words = raw_input()
+			comm = comment(words, 1000, 20)
+			comments.add(comm)
+			#win.getMouse()
+			if win.isClosed():
+				exit()
 		except:
 			return
 		"""if not comments.empty():
