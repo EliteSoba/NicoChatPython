@@ -15,7 +15,7 @@ class chat():
 		for comment in self.comments:
 			comment.scroll()
 			if not comment.live:
-				print "Comment gone"
+				#print "Comment gone"
 				self.comments.remove(comment)
 	
 	def empty(self):
