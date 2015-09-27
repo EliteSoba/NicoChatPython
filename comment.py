@@ -1,6 +1,8 @@
-﻿from graphics import *
-from Tkinter import TclError
-import sys
+﻿import sys
+from pyText import *
+
+WHITE = (255, 255, 255)
+BLACK = (10, 10, 10)
 
 class comment():
 	# The comment itself
@@ -9,33 +11,16 @@ class comment():
 	x = 1000
 	y = 20
 	live = True
-	def __init__(self, text, x, y):
+	def __init__(self, text, x, y, font):
 		self.text = text
 		self.x = x
 		self.y = y
-		self.comment = Text(Point(self.x, self.y), text)
-		self.comment.setFace('helvetica')
-		self.comment.setStyle('bold')
-		self.comment.setTextColor('White')
-		self.comment.setSize(20)
+		self.comment, self.width = textOutline(font, self.text, WHITE, BLACK)
 	
-	def draw(self, win):
-		self.comment.draw(win)
-		
-	def undraw(self):
-		self.comment.undraw()
+	def getComment(self):
+		return self.comment
 	
 	def scroll(self):
-		try:
-			self.comment.move(-2, 0)
-		except TclError as e:
-			print "I have no idea"
-			print "Message: " + self.text
-			print "Some error: " + e.message
-			print "The args: " + str(e.args)
-			print sys.exc_info()[0]
-			self.live = False
-		self.x -= 1
-		if self.x < -50:
-			#self.comment.undraw()
+		self.x -= 5
+		if self.x < -1 * self.width:
 			self.live = False
