@@ -3,56 +3,12 @@
 
 from graphics import *
 from threading import Semaphore, Thread
+from comment import comment
+from chat import chat
 
-class message():
-	# The message itself
-	text = ""
-	# The coordinates of the message. X should be constant, y should be in rows
-	x = 1000
-	y = 20
-	live = True
-	def __init__(self, text, x, y):
-		self.text = text
-		self.x = x
-		self.y = y
-		self.message = Text(Point(self.x, self.y), text)
-		self.message.setFace('helvetica')
-		self.message.setStyle('bold')
-		self.message.setTextColor('White')
-		self.message.setSize(20)
-	
-	def draw(self, win):
-		self.message.draw(win)
-	
-	def scroll(self):
-		self.message.move(-2, 0)
-		self.x -= 1
-		if self.x < -500:
-			self.message.undraw()
-			self.live = False
-
-class chat():
-	messages = []
-	
-	def __init__(self):
-		print "Chat logging starting"
-	
-	def add(self, message):
-		self.messages.append(message)
-	
-	def run(self):
-		for message in self.messages:
-			message.scroll()
-			if not message.live:
-				print "Message gone"
-				self.messages.remove(message)
-	
-	def empty(self):
-		return len(self.messages) == 0
-
-def bbbbb(messages):
+def bbbbb(comments):
 	while True:
-		messages.run()
+		comments.run()
 		time.sleep(.004)
 	exit()
 	return
@@ -63,37 +19,34 @@ def main():
 	#Background
 	win.setBackground("Black")
 	
-	messages = chat()
+	comments = chat(win)
 	
-	test = message("This is another comment", 1200, 50)
-	test.draw(win)
+	test = comment("This is another comment", 1200, 50)
 	
-	text = message("This is a comment", 1000, 20)
-	text.draw(win)
+	text = comment("This is a comment", 1000, 20)
 	
-	messages.add(test)
-	messages.add(text)
+	comments.add(test)
+	comments.add(text)
 	sema = Semaphore(0)
-	t = Thread(target=bbbbb, args=(messages,))
+	t = Thread(target=bbbbb, args=(comments,))
 	t.daemon = True
 	t.start()
 	
 	while True:
 		try:
 			win.getMouse()
-			asdf = message("asdfasdfa", 1000, 70)
-			asdf.draw(win)
-			messages.add(asdf)
+			asdf = comment("asdfasdfa", 1000, 70)
+			comments.add(asdf)
 		except:
 			return
-		"""if not messages.empty():
-			messages.run()
+		"""if not comments.empty():
+			comments.run()
 			time.sleep(.004)
-		if messages.empty():
+		if comments.empty():
 			#sema.acquire()
-			asdf = message("asdfasdfa", 1000, 70)
+			asdf = comment("asdfasdfa", 1000, 70)
 			asdf.draw(win)
-			messages.add(asdf)
+			comments.add(asdf)
 		if win.isClosed():
 			exit()"""
 	
