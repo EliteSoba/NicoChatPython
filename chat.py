@@ -12,7 +12,7 @@ class chat():
 		#row = randint(0, 20) * 25
 		comm = comment(msg, 1184, self.i*25, self.font)
 		self.i += 1
-		if self.i > 20:
+		if self.i >= 20:
 			self.i = 0
 		#print "Added comment: " + msg
 		self.comments.append(comm)
