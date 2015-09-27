@@ -2,10 +2,8 @@
 ============
 +Comment[] comments
 	A list of all the currently active comments
-+graphics.GraphWin win
-	The window to draw the comments to
 	
 +run()
 	Scrolls all comments
-+add()
++addComment(String message)
 	Adds a comment to the list of comments

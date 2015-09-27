@@ -4,7 +4,7 @@
 	The text the comment contains
 +int x, y
 	The coordinates of the message
-+graphics.Text message
++message
 	The graphical object representation of the comment
 
 +draw(graphics.GraphWin)
