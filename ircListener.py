@@ -76,7 +76,7 @@ if __name__ == '__main__':
 	twitchFont = pygame.font.SysFont("helvetica", 24, bold=True)
 	twitchChat = chat(twitchFont)
 	# create factory protocol and application
-	f = MonitorFactory(sys.argv[1], twitchChat)
+	f = MonitorFactory("#monotonetim", twitchChat)
 
 	# connect factory to this host and port
 	reactor.connectTCP("irc.twitch.tv", 6667, f)

@@ -12,3 +12,6 @@ The idea behind this is to chromakey out the background and overlay the text ove
 
 It looks like this for now. Who knows if it will keep looking like this.
 ![](http://i.imgur.com/m31O1Kp.png)
+
+In action:
+![](http://i.imgur.com/J7ObyZj.png)
