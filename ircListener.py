@@ -76,7 +76,7 @@ if __name__ == '__main__':
 	twitchFont = pygame.font.SysFont("helvetica", 24, bold=True)
 	twitchChat = chat(twitchFont)
 	# create factory protocol and application
-	f = MonitorFactory("#monotonetim", twitchChat)
+	f = MonitorFactory(sys.argv[1], twitchChat)
 
 	# connect factory to this host and port
 	reactor.connectTCP("irc.twitch.tv", 6667, f)
@@ -91,6 +91,7 @@ if __name__ == '__main__':
 	SIZE = [1184, 500]
 	 
 	screen = pygame.display.set_mode(SIZE)
+	#screen2 = pygame.display.set_mode((400, 300))
 	pygame.display.set_caption("Twitch Chat")
 	clock = pygame.time.Clock()
 	 
