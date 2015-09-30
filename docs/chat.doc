@@ -1,9 +1,10 @@
 ﻿Chat
 ============
-+Comment[] comments
-	A list of all the currently active comments
++Row[] rows
+	A list of all the currently active rows of comments
 	
 +run()
-	Scrolls all comments
+	Scrolls all rows
 +addComment(String message)
-	Adds a comment to the list of comments
+	Picks a row (Randomly, sequential order, whichever row is backlogged the least)
+	Adds a comment to the list of comments to that row

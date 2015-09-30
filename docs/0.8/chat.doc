@@ -1,0 +1,9 @@
+﻿Chat
+============
++Comment[] comments
+	A list of all the currently active comments
+	
++run()
+	Scrolls all comments
++addComment(String message)
+	Adds a comment to the list of comments

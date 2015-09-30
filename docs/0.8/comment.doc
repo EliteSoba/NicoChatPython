@@ -1,0 +1,13 @@
+﻿Comment
+==============
++String text
+	The text the comment contains
++int x, y
+	The coordinates of the message
++message
+	The graphical object representation of the comment
+
++draw(graphics.GraphWin)
+	Draws the message
++scroll()
+	Moves the message

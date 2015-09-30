@@ -1,0 +1,7 @@
+﻿Bot extends irc.IRCClient
+=========================
++Chat chat
+	The chat graphical part to display the comments from chat
+
++action(user, channel, msg)
+	Inherited from IRCClient. Callback that listens for chat messages and adds them to chat list

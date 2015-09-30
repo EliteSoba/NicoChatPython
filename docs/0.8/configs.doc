@@ -1,0 +1,20 @@
+﻿Configurable Details
+====================
+ChannelName
+	The name of the channel to connect to
+[Nickname]
+	The account to connect to IRC with. Defaults to anonymous login account "justinfan######" where "######" represents any string of integers. This parameter is probably completely unnecessary because I do not foresee any instance where an account would be necessary.
+Subs=ON/OFF/SPECIAL
+	Twitch IRC indicates when people sub via messages from the "twitchnotify" user. Option to ignore these messages, treat them as normal messages, or make them specially displayed, such as with red text or in a separate row or something.
+Font
+	The font to use for chat
+FontSize
+	The size of the font to use for chat
+FontStyle
+	The style of the font to use (ex: bold)
+FontColor
+	The color of the font to use for chat
+BackgroundColor
+	The background color to use
+Speed
+	The speed of the text

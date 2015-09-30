@@ -1,0 +1,10 @@
+﻿Row
+===========
++ Comment[] comments
+	A list of comments currently enqueued/scrolling through row
+
++run()
+	Scrolls all comments
++addComment(String comment)
+	Adds a comment to the list of comments.
+	Current algorithm for adding comment is set x to max(Screen right edge + constant, Farthest right most comment's right edge + (different?) constant)
